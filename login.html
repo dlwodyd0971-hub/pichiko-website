@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PICHIKO — Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- jsDelivr CDN — Google Fonts 대체 (중국 포함 전세계 접근 가능) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/600.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400-italic.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/300.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
+  <style>
+    .auth-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+    }
+    .auth-toggle {
+      font-family: var(--fb);
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 15px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .auth-toggle:hover { color: var(--accent); }
+  </style>
+</head>
+<body class="bg-gradient">
+
+  <header id="header" class="scrolled">
+    <div class="logo" style="cursor:pointer;" onclick="location.href='index.html'">PICHIKO</div>
+    <nav>
+      <button class="btn-ghost" onclick="location.href='index.html'">Back to Home</button>
+    </nav>
+  </header>
+
+  <section class="auth-section">
+    <div class="booking-wrap" style="width:100%;max-width:420px;">
+
+      <div class="section-head" style="margin-bottom:30px;">
+        <div class="label-sm" id="authLabel">Welcome Back</div>
+        <h2 class="fd" id="authTitle">Log In</h2>
+      </div>
+
+      <div class="booking-form" style="display:flex;flex-direction:column;gap:16px;padding:40px 32px;">
+
+        <div class="form-row full">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="emailInput" placeholder="name@example.com" required />
+        </div>
+
+        <div class="form-row full">
+          <label class="form-label">Password</label>
+          <input type="password" id="passwordInput" placeholder="••••••••" required />
+        </div>
+
+        <button class="btn-accent full-btn" id="authActionBtn">Log In</button>
+
+        <div class="auth-toggle" id="authToggleBtn">Don't have an account? Sign up</div>
+
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
+      from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey:            "AIzaSyCnByhLp-UyVaVOpEERqNBJKeIcipPILE0",
+      authDomain:        "pichiko-dev.firebaseapp.com",
+      projectId:         "pichiko-dev",
+      storageBucket:     "pichiko-dev.firebasestorage.app",
+      messagingSenderId: "675915261853",
+      appId:             "1:675915261853:web:58dce392b1103dd6c1b174"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    let isLogin = true;
+
+    const authLabel     = document.getElementById('authLabel');
+    const authTitle     = document.getElementById('authTitle');
+    const authActionBtn = document.getElementById('authActionBtn');
+    const authToggleBtn = document.getElementById('authToggleBtn');
+    const emailInput    = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    /* 로그인 ↔ 회원가입 전환 */
+    authToggleBtn.addEventListener('click', () => {
+      isLogin = !isLogin;
+      if (isLogin) {
+        authLabel.textContent     = "Welcome Back";
+        authTitle.textContent     = "Log In";
+        authActionBtn.textContent = "Log In";
+        authToggleBtn.textContent = "Don't have an account? Sign up";
+      } else {
+        authLabel.textContent     = "Join Us";
+        authTitle.textContent     = "Create Account";
+        authActionBtn.textContent = "Sign Up";
+        authToggleBtn.textContent = "Already have an account? Log in";
+      }
+    });
+
+    /* 버튼 클릭 — 로그인 or 회원가입 */
+    authActionBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email    = emailInput.value;
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        alert("이메일과 비밀번호를 모두 입력해주세요.");
+        return;
+      }
+
+      if (isLogin) {
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            alert("로그인 성공! 환영합니다.");
+            window.location.href = "index.html";
+          })
+          .catch((error) => {
+        

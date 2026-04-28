@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PICHIKO — Privacy Policy</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- jsDelivr CDN — Google Fonts 대체 (중국 포함 전세계 접근 가능) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/600.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400-italic.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/300.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
+  <style>
+    .privacy-page {
+      min-height: 100vh;
+      padding: 110px 5% 80px;
+      background: var(--bg);
+    }
+    .privacy-container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .privacy-hero {
+      margin-bottom: 52px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .privacy-hero .label-sm { margin-bottom: 14px; }
+    .privacy-hero h1 {
+      font-family: var(--fd);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .privacy-hero .date {
+      font-family: var(--fb);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    /* 언어 탭 */
+    .lang-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 44px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .lang-tab {
+      font-family: var(--fb);
+      font-size: 13px;
+      padding: 10px 22px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2.5px solid transparent;
+      margin-bottom: -1.5px;
+      transition: color .18s, border-color .18s;
+    }
+    .lang-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .lang-tab:hover:not(.active) { color: var(--text); }
+
+    /* 섹션 */
+    .privacy-content { display: none; }
+    .privacy-content.active { display: block; }
+
+    .pp-section {
+      margin-bottom: 40px;
+    }
+    .pp-section h2 {
+      font-family: var(--fd);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pp-section h2 .num {
+      font-family: var(--fb);
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      min-width: 26px;
+    }
+    .pp-section p,
+    .pp-section li {
+      font-family: var(--fb);
+      font-size: 14px;
+      line-height: 1.9;
+      color: #5a3a30;
+    }
+    .pp-section ul {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 10px;
+    }
+    .pp-section ul li {
+      padding: 6px 0 6px 22px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .pp-section ul li:last-child { border-bottom: none; }
+    .pp-section ul li::before {
+      content: "›";
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .pp-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+    .pp-highlight {
+      background: var(--soft);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-family: var(--fb);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .pp-contact {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+    .pp-contact p {
+      margin-bottom: 6px;
+    }
+    .pp-contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .pp-contact a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .lang-tab { padding: 9px 14px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header" class="scrolled">
+    <div class="logo" style="cursor:pointer;" onclick="location.href='index.html'">PICHIKO</div>
+    <nav>
+      <button class="btn-ghost" onclick="location.href='index.html'">← Home</button>
+    </nav>
+  </header>
+
+  <section class="privacy-page">
+    <div class="privacy-container">
+
+      <!-- 헤더 -->
+      <div class="privacy-hero">
+        <div class="label-sm">Legal</div>
+        <h1 class="fd">Privacy <em>Policy</em></h1>
+        <div class="date">Effective Date: January 1, 2025 &nbsp;·&nbsp; Last Updated: April 2025</div>
+      </div>
+
+      <!-- 언어 탭 -->
+      <div class="lang-tabs">
+        <button class="lang-tab active" data-lang="en" onclick="switchLang('en')">🇬🇧 English</button>
+        <button class="lang-tab" data-lang="ko" onclick="switchLang('ko')">🇰🇷 한국어</button>
+        <button class="lang-tab" data-lang="zh" onclick="switchLang('zh')">🇨🇳 中文</button>
+        <button class="lang-tab" data-lang="jp" onclick="switchLang('jp')">🇯🇵 日本語</button>
+      </div>
+
+      <!-- ───── ENGLISH ───── -->
+      <div class="privacy-content active" id="lang-en">
+
+        <div class="pp-highlight">
+          PICHIKO ("we", "our", "us") operates a K-Beauty mobile makeup and hair service in Seoul, Korea.
+          This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services.
+        </div>
+
+        <div class="pp-section">
+          <h2><span class="num">01</span> Information We Collect</h2>
+          <p>We collect the following information when you use our services:</p>
+          <ul>
+            <li><strong>Account information</strong> — email address and password (managed securely via Firebase Authentication)</li>
+            <li><strong>Booking details</strong> — name, hotel/address in Seoul, selected date and time, service type, preferred artist, and any special requests</li>
+            <li><strong>Usage data</strong> — pages visited, language preference, and interaction logs collected automatically</li>
+            <li><strong>Device information</strong> — browser type, operating system, and IP address for security and analytics purposes</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">02</span> How We Use Your Information</h2>
+          <ul>
+            <li>To process and confirm your beauty service bookings</li>
+            <li>To match you with the right artist and coordinate your appointment</li>
+            <li>To send booking confirmation and service-related communications</li>
+            <li>To prevent duplicate bookings and protect against fraud</li>
+            <li>To improve our website, services, and customer experience</li>
+            <li>To comply with applicable laws and regulations</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">03</span> Firebase & Third-Party Services</h2>
+          <p>Our website uses <strong>Google Firebase</strong> (Firebase Authentication and Cloud Firestore) to manage user accounts and store booking data. Firebase is operated by Google LLC and is subject to Google's Privacy Policy.</p>
+          <ul>
+            <li>Booking data is stored in Firebase Firestore (servers located in the US or Asia)</li>
+            <li>Passwords are never stored by PICHIKO — they are managed entirely by Firebase Authentication</li>
+            <li>We do not sell, rent, or share your personal data with any advertising networks</li>
+          </ul>
+          <div class="pp-highlight">
+            Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:var(--accent)">firebase.google.com/support/privacy</a>
+          </div>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">04</span> Data Retention</h2>
+          <p>We retain your personal information for as long as your account is active or as needed to provide our services. Booking records are kept for a minimum of 1 year for operational and legal purposes. You may request deletion of your data at any time (see Section 06).</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">05</span> Cookies & Analytics</h2>
+          <p>Our website may use session cookies to maintain your login state and language preferences. We do not use third-party tracking cookies or advertising cookies. No personal data is shared with advertising networks.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">06</span> Your Rights</h2>
+          <ul>
+            <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
+            <li><strong>Correction</strong> — request correction of inaccurate or incomplete data</li>
+            <li><strong>Deletion</strong> — request deletion of your account and associated data</li>
+            <li><strong>Objection</strong> — object to processing of your personal data in certain circumstances</li>
+            <li><strong>Portability</strong> — request a machine-readable copy of your data</li>
+          </ul>
+          <p style="margin-top:14px;">To exercise any of these rights, please contact us at the address below.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">07</span> Children's Privacy</h2>
+          <p>Our services are not directed to individuals under the age of 14. We do not knowingly collect personal data from children. If you believe a child has provided us with personal information, please contact us immediately.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">08</span> Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. When we make changes, we will update the "Last Updated" date at the top of this page. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">09</span> Contact Us</h2>
+          <div class="pp-contact">
+            <p><strong>PICHIKO K-Beauty Services</strong></p>
+            <p>Seoul, Republic of Korea</p>
+            <p>Email: <a href="mailto:privacy@pichiko.com">privacy@pichiko.com</a></p>
+            <p>KakaoTalk: @pichiko</p>
+          </div>
+        </div>
+
+      </div><!-- /lang-en -->
+
+
+      <!-- ───── 한국어 ───── -->
+      <div class="privacy-content" id="lang-ko">
+
+        <div class="pp-highlight">
+          피치코("회사", "당사")는 대한민국 서울에서 K-뷰티 출장 메이크업·헤어 서비스를 운영합니다.
+          본 개인정보 처리방침은 당사 웹사이트 및 서비스 이용 시 수집·이용·보호하는 개인정보에 관해 설명합니다.
+        </div>
+
+        <div class="pp-section">
+          <h2><span class="num">01</span> 수집하는 개인정보 항목</h2>
+          <p>당사는 서비스 이용 시 아래 정보를 수집합니다.</p>
+          <ul>
+            <li><strong>계정 정보</strong> — 이메일 주소 및 비밀번호 (Firebase Authentication으로 안전하게 관리)</li>
+            <li><strong>예약 정보</strong> — 이름, 서울 내 숙소/주소, 예약 날짜 및 시간, 서비스 종류, 선호 아티스트, 특별 요청 사항</li>
+            <li><strong>이용 정보</strong> — 방문 페이지, 언어 설정, 서비스 이용 로그 (자동 수집)</li>
+            <li><strong>기기 정보</strong> — 브라우저 종류, 운영체제, IP 주소 (보안 및 분석 목적)</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">02</span> 개인정보 이용 목적</h2>
+          <ul>
+            <li>뷰티 서비스 예약 접수 및 확인</li>
+            <li>고객과 아티스트 매칭 및 예약 조율</li>
+            <li>예약 확인 및 서비스 관련 안내 발송</li>
+            <li>중복 예약 방지 및 부정 이용 차단</li>
+            <li>웹사이트 및 서비스 품질 개선</li>
+            <li>관련 법령 준수</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">03</span> Firebase 및 제3자 서비스</h2>
+          <p>당사 웹사이트는 <strong>Google Firebase</strong>(Firebase Authentication, Cloud Firestore)를 이용해 계정 관리 및 예약 데이터를 저장합니다. Firebase는 Google LLC가 운영하며 Google의 개인정보 처리방침을 따릅니다.</p>
+          <ul>
+            <li>예약 데이터는 Firebase Firestore(미국 또는 아시아 소재 서버)에 저장됩니다</li>
+            <li>비밀번호는 피치코가 직접 저장하지 않으며, Firebase Authentication에서 전적으로 관리합니다</li>
+            <li>이용자 개인정보를 광고 네트워크에 판매·임대·공유하지 않습니다</li>
+          </ul>
+          <div class="pp-highlight">
+            Firebase 개인정보 처리방침: <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:var(--accent)">firebase.google.com/support/privacy</a>
+          </div>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">04</span> 개인정보 보유 및 파기</h2>
+          <p>계정이 활성 상태인 동안 또는 서비스 제공에 필요한 기간 동안 개인정보를 보유합니다. 예약 기록은 운영 및 법적 목적으로 최소 1년간 보관됩니다. 언제든지 데이터 삭제를 요청하실 수 있습니다 (제06항 참조).</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">05</span> 쿠키 및 분석</h2>
+          <p>당사 웹사이트는 로그인 상태와 언어 설정 유지를 위해 세션 쿠키를 사용할 수 있습니다. 제3자 추적 쿠키나 광고 쿠키는 사용하지 않으며, 광고 네트워크에 개인정보를 제공하지 않습니다.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">06</span> 이용자 권리</h2>
+          <ul>
+            <li><strong>열람권</strong> — 보유 중인 본인 개인정보 사본 요청</li>
+            <li><strong>정정권</strong> — 부정확하거나 불완전한 정보 수정 요청</li>
+            <li><strong>삭제권</strong> — 계정 및 관련 데이터 삭제 요청</li>
+            <li><strong>처리 정지권</strong> — 특정 상황에서 개인정보 처리 중단 요청</li>
+            <li><strong>이동권</strong> — 기계 판독 가능한 형식으로 데이터 제공 요청</li>
+          </ul>
+          <p style="margin-top:14px;">권리 행사를 원하시면 아래 연락처로 문의해 주세요.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">07</span> 아동 개인정보 보호</h2>
+          <p>당사 서비스는 만 14세 미만 아동을 대상으로 하지 않습니다. 아동의 개인정보가 수집되었다고 판단되시면 즉시 연락해 주시기 바랍니다.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">08</span> 방침 변경</h2>
+          <p>본 방침은 변경될 수 있습니다. 변경 시 페이지 상단의 "최종 수정일"을 업데이트하며, 변경 후 서비스를 계속 이용하시면 변경 내용에 동의한 것으로 간주됩니다.</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">09</span> 문의처</h2>
+          <div class="pp-contact">
+            <p><strong>피치코 K-뷰티 서비스</strong></p>
+            <p>대한민국 서울</p>
+            <p>이메일: <a href="mailto:privacy@pichiko.com">privacy@pichiko.com</a></p>
+            <p>카카오톡: @pichiko</p>
+          </div>
+        </div>
+
+      </div><!-- /lang-ko -->
+
+
+      <!-- ───── 中文 ───── -->
+      <div class="privacy-content" id="lang-zh">
+
+        <div class="pp-highlight">
+          PICHIKO（"我们"）在韩国首尔经营K-美妆上门服务。本隐私政策说明我们在您使用网站及服务时如何收集、使用和保护您的个人信息。
+        </div>
+
+        <div class="pp-section">
+          <h2><span class="num">01</span> 我们收集的信息</h2>
+          <ul>
+            <li><strong>账户信息</strong> — 电子邮件地址和密码（通过 Firebase Authentication 安全管理）</li>
+            <li><strong>预约信息</strong> — 姓名、首尔住宿地址、预约日期和时间、服务类型、偏好艺术家及特殊要求</li>
+            <li><strong>使用数据</strong> — 访问页面、语言偏好及交互日志（自动收集）</li>
+            <li><strong>设备信息</strong> — 浏览器类型、操作系统及 IP 地址（用于安全与分析）</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">02</span> 信息使用方式</h2>
+          <ul>
+            <li>处理并确认您的美妆服务预约</li>
+            <li>为您匹配合适的艺术家并协调预约</li>
+            <li>发送预约确认及服务相关通知</li>
+            <li>防止重复预约及欺诈行为</li>
+            <li>改善网站、服务及客户体验</li>
+            <li>遵守适用法律法规</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">03</span> Firebase 及第三方服务</h2>
+          <p>我们的网站使用 <strong>Google Firebase</strong>（Firebase Authentication 和 Cloud Firestore）管理用户账户和存储预约数据。Firebase 由 Google LLC 运营，受 Google 隐私政策约束。</p>
+          <ul>
+            <li>预约数据存储于 Firebase Firestore（位于美国或亚洲的服务器）</li>
+            <li>密码不由 PICHIKO 直接存储，完全由 Firebase Authentication 管理</li>
+            <li>我们不向任何广告网络出售、出租或共享您的个人数据</li>
+          </ul>
+          <div class="pp-highlight">
+            Firebase 隐私政策: <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:var(--accent)">firebase.google.com/support/privacy</a>
+          </div>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">04</span> 数据保留</h2>
+          <p>在您的账户处于活跃状态或提供服务所需期间内，我们将保留您的个人信息。预约记录出于运营及法律目的至少保留1年。您可随时申请删除数据（见第06条）。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">05</span> Cookie 及分析</h2>
+          <p>我们的网站可能使用会话 Cookie 来维持登录状态和语言偏好。我们不使用第三方追踪 Cookie 或广告 Cookie，也不向广告网络共享个人数据。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">06</span> 您的权利</h2>
+          <ul>
+            <li><strong>访问权</strong> — 申请获取我们持有的您的个人数据副本</li>
+            <li><strong>更正权</strong> — 申请更正不准确或不完整的数据</li>
+            <li><strong>删除权</strong> — 申请删除您的账户及相关数据</li>
+            <li><strong>异议权</strong> — 在特定情况下反对处理您的个人数据</li>
+            <li><strong>可携权</strong> — 申请获取机器可读格式的数据副本</li>
+          </ul>
+          <p style="margin-top:14px;">如需行使上述权利，请通过以下联系方式与我们联系。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">07</span> 儿童隐私</h2>
+          <p>我们的服务不面向14岁以下儿童。如您认为儿童向我们提供了个人信息，请立即联系我们。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">08</span> 政策变更</h2>
+          <p>我们可能不时更新本隐私政策。变更时，我们将更新页面顶部的"最后更新"日期。继续使用我们的服务即表示接受更新后的政策。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">09</span> 联系我们</h2>
+          <div class="pp-contact">
+            <p><strong>PICHIKO K-美妆服务</strong></p>
+            <p>韩国首尔</p>
+            <p>电子邮件: <a href="mailto:privacy@pichiko.com">privacy@pichiko.com</a></p>
+            <p>KakaoTalk: @pichiko</p>
+          </div>
+        </div>
+
+      </div><!-- /lang-zh -->
+
+
+      <!-- ───── 日本語 ───── -->
+      <div class="privacy-content" id="lang-jp">
+
+        <div class="pp-highlight">
+          PICHIKO（「当社」）は、韓国ソウルにてKビューティーの出張メイク・ヘアサービスを運営しています。本プライバシーポリシーは、お客様がウェブサイトおよびサービスをご利用の際に当社が収集・利用・保護する個人情報について説明するものです。
+        </div>
+
+        <div class="pp-section">
+          <h2><span class="num">01</span> 収集する情報</h2>
+          <ul>
+            <li><strong>アカウント情報</strong> — メールアドレスおよびパスワード（Firebase Authenticationにより安全に管理）</li>
+            <li><strong>予約情報</strong> — お名前、ソウル市内のホテル/住所、予約日時、サービス種別、ご希望のアーティスト、特別なご要望</li>
+            <li><strong>利用データ</strong> — 閲覧ページ、言語設定、操作ログ（自動収集）</li>
+            <li><strong>端末情報</strong> — ブラウザ種別、OS、IPアドレス（セキュリティおよび分析目的）</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">02</span> 情報の利用目的</h2>
+          <ul>
+            <li>ビューティーサービスの予約受付および確認</li>
+            <li>アーティストのマッチングと予約調整</li>
+            <li>予約確認およびサービス関連のご連絡</li>
+            <li>重複予約の防止および不正利用の防止</li>
+            <li>ウェブサイトおよびサービスの品質向上</li>
+            <li>適用法令の遵守</li>
+          </ul>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">03</span> Firebase およびサードパーティサービス</h2>
+          <p>当社ウェブサイトでは、ユーザーアカウントの管理および予約データの保存に<strong>Google Firebase</strong>（Firebase Authentication・Cloud Firestore）を使用しています。FirebaseはGoogle LLCが運営し、Googleのプライバシーポリシーに従います。</p>
+          <ul>
+            <li>予約データはFirebase Firestore（米国またはアジア所在のサーバー）に保存されます</li>
+            <li>パスワードはPICHIKOが直接保存することはなく、Firebase Authenticationが一括管理します</li>
+            <li>お客様の個人データを広告ネットワークに販売・貸与・共有することはありません</li>
+          </ul>
+          <div class="pp-highlight">
+            Firebaseプライバシーポリシー: <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:var(--accent)">firebase.google.com/support/privacy</a>
+          </div>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">04</span> データの保持</h2>
+          <p>アカウントが有効な期間、またはサービス提供に必要な期間、個人情報を保持します。予約記録は運営および法的目的のため最低1年間保管されます。いつでもデータの削除をご依頼いただけます（第06条参照）。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">05</span> Cookieおよび分析</h2>
+          <p>当社ウェブサイトでは、ログイン状態と言語設定を維持するためにセッションCookieを使用する場合があります。サードパーティの追跡Cookieや広告Cookieは使用しておらず、個人情報を広告ネットワークに提供することはありません。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">06</span> お客様の権利</h2>
+          <ul>
+            <li><strong>アクセス権</strong> — 当社が保有するお客様の個人データのコピーをリクエスト可能</li>
+            <li><strong>訂正権</strong> — 不正確または不完全なデータの訂正をリクエスト可能</li>
+            <li><strong>削除権</strong> — アカウントおよび関連データの削除をリクエスト可能</li>
+            <li><strong>異議申立権</strong> — 特定の状況下で個人データの処理に異議を申し立て可能</li>
+            <li><strong>ポータビリティ権</strong> — 機械読み取り可能な形式のデータコピーをリクエスト可能</li>
+          </ul>
+          <p style="margin-top:14px;">これらの権利を行使される場合は、下記連絡先までお問い合わせください。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">07</span> 子どものプライバシー</h2>
+          <p>当社のサービスは14歳未満の方を対象としていません。子どもが個人情報を提供したと思われる場合は、直ちにご連絡ください。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">08</span> ポリシーの変更</h2>
+          <p>本プライバシーポリシーは随時更新される場合があります。変更の際はページ上部の「最終更新日」を更新します。変更後もサービスをご利用いただくことにより、更新されたポリシーへの同意とみなします。</p>
+        </div>
+        <hr class="pp-divider" />
+
+        <div class="pp-section">
+          <h2><span class="num">09</span> お問い合わせ</h2>
+          <div class="pp-contact">
+            <p><strong>PICHIKO Kビューティーサービス</strong></p>
+            <p>韓国・ソウル</p>
+            <p>メール: <a href="mailto:privacy@pichiko.com">privacy@pichiko.com</a></p>
+            <p>KakaoTalk: @pichiko</p>
+          </div>
+        </div>
+
+      </div><!-- /lang-jp -->
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo accent">PICHIKO</div>
+    <span class="footer-copy">© 2025 Pichiko · Seoul, Korea</span>
+    <span class="footer-ig" onclick="location.href='index.html'" style="cursor:pointer;">← Back to Home</span>
+  </footer>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.privacy-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('lang-' + lang).classList.add('active');
+      document.querySelector('[data-lang="' + lang + '"]').classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
