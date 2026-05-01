@@ -1,13 +1,13 @@
 /* ═══════════════════════════════════════════════
-   PICHIKO — script.js (updated)
+   PEACHKO — script.js (updated)
    변경사항:
    1. 예약/아티스트 버튼 → 언어+아티스트를 URL로 booking.html에 전달
    2. 홈 복귀 시 언어 유지 (URL 파라미터)
    3. 기존 기능 전부 유지
 ═══════════════════════════════════════════════ */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 /* ── 아티스트 사진 (직접 내장 — base64) ──
    팀원 공유용: 이 ARTIST_PHOTOS 배열을 script.js 상단에 그대로 복사하세요.
@@ -20,13 +20,14 @@ const ARTIST_PHOTOS = [
 ];
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCnByhLp-UyVaVOpEERqNBJKeIcipPILE0",
-  authDomain: "pichiko-dev.firebaseapp.com",
-  projectId: "pichiko-dev",
-  storageBucket: "pichiko-dev.firebasestorage.app",
-  messagingSenderId: "675915261853",
-  appId: "1:675915261853:web:58dce392b1103dd6c1b174"
-};
+      apiKey: "AIzaSyAix2aRbq5ykVPAO1zq_l_Uyt4VwvQkkHU",
+      authDomain: "peachko-356d4.firebaseapp.com",
+      projectId: "peachko-356d4",
+      storageBucket: "peachko-356d4.firebasestorage.app",
+      messagingSenderId: "958799549654",
+      appId: "1:958799549654:web:3919f7bc44dcac8a1d2577",
+      measurementId: "G-D4WZHXLMJX"
+    };
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -40,8 +41,8 @@ const T = {
     hero_cta:"Reserve Now",hero_cta2:"Meet Artists",
     stat1n:"500+",stat1l:"Guests",stat2n:"15",stat2l:"Artists",stat3n:"4.9★",stat3l:"Rated",
     badge_sub:"Today's Look",badge_title:"K-Glow Ready",
-    before:"Before",pichiko_label:"Pichiko",
-    prob_label:"Why Pichiko",prob_h:"We Solved the Hassle",
+    before:"Before",peachko_label:"Peachko",
+    prob_label:"Why Peachko",prob_h:"We Solved the Hassle",
     prob_bad:["Searching Korean websites","Navigating unfamiliar streets","Language barriers at salons","Losing precious travel time"],
     prob_good:["Book in English in minutes","Artist comes to your hotel","Zero language barriers","Start your day glowing"],
     how_label:"3 Simple Steps",how_h:"How It Works",
@@ -82,7 +83,7 @@ const T = {
     hero_cta:"지금 예약",hero_cta2:"아티스트 보기",
     stat1n:"500+",stat1l:"고객",stat2n:"15명",stat2l:"아티스트",stat3n:"4.9★",stat3l:"평점",
     badge_sub:"오늘의 룩",badge_title:"K-글로우 레디",
-    before:"Before",pichiko_label:"피치코",
+    before:"Before",peachko_label:"피치코",
     prob_label:"피치코 소개",prob_h:"불편함을 해결했습니다",
     prob_bad:["한국 사이트 검색","낯선 길 찾아가기","언어 장벽","소중한 여행 시간 낭비"],
     prob_good:["영어로 간편 예약","아티스트가 숙소로 방문","언어 걱정 없음","메이크업 후 바로 여행"],
@@ -124,8 +125,8 @@ const T = {
     hero_cta:"今すぐ予約",hero_cta2:"アーティストを見る",
     stat1n:"500+",stat1l:"名のゲスト",stat2n:"15名",stat2l:"アーティスト",stat3n:"4.9★",stat3l:"評価",
     badge_sub:"本日のルック",badge_title:"Kグロウ レディ",
-    before:"Before",pichiko_label:"PICHIKO",
-    prob_label:"PICHIKOとは",prob_h:"不便を解決しました",
+    before:"Before",peachko_label:"PEACHKO",
+    prob_label:"PEACHKOとは",prob_h:"不便を解決しました",
     prob_bad:["韓国語サイトで検索","知らない道を歩く","言語の壁","旅行時間のロス"],
     prob_good:["英語で簡単予約","ホテルへ出張訪問","言語の心配なし","メイク後すぐ観光"],
     how_label:"3ステップ",how_h:"ご利用方法",
@@ -166,8 +167,8 @@ const T = {
     hero_cta:"立即预约",hero_cta2:"查看艺术家",
     stat1n:"500+",stat1l:"位顾客",stat2n:"15位",stat2l:"艺术家",stat3n:"4.9★",stat3l:"评分",
     badge_sub:"今日造型",badge_title:"K光芒 准备好了",
-    before:"以前",pichiko_label:"PICHIKO",
-    prob_label:"关于PICHIKO",prob_h:"我们解决了烦恼",
+    before:"以前",peachko_label:"PEACHKO",
+    prob_label:"关于PEACHKO",prob_h:"我们解决了烦恼",
     prob_bad:["搜索韩语网站","在陌生街道迷路","语言障碍","浪费旅行时间"],
     prob_good:["用中文轻松预约","艺术家上门服务","无语言障碍","化妆后直接出发"],
     how_label:"简单3步",how_h:"使用方法",
