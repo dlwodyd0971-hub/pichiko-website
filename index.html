@@ -10,7 +10,201 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/600.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400-italic.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/300.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" /><!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEACHKO — K-Beauty Comes to You</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/600.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400-italic.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/300.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header id="header">
+    <div class="logo">PEACHKO</div>
+    <nav>
+      <button class="nav-link" data-scroll="services" data-key="nav0">Services</button>
+      <button class="nav-link" data-scroll="artists"  data-key="nav1">Artists</button>
+      <button class="nav-link" onclick="location.href='login.html'" data-key="nav_login">Log In</button>
+      <button class="btn-ghost"  data-scroll="chat"    data-key="chat">Chat</button>
+      <button class="btn-accent" data-scroll="booking" data-key="nav2">Book</button>
+      <div class="lang-wrap">
+        <button class="lang-toggle" id="langToggle">🇬🇧 EN ▾</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-opt active" data-lang="EN">🇬🇧 EN</button>
+          <button class="lang-opt" data-lang="KO">🇰🇷 KO</button>
+          <button class="lang-opt" data-lang="JP">🇯🇵 JP</button>
+          <button class="lang-opt" data-lang="ZH">🇨🇳 ZH</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-text fade-in">
+      <div class="label">
+        <span class="line"></span>
+        <span data-key="hero_tag">Seoul's On-Demand K-Beauty</span>
+      </div>
+      <h1>
+        <span class="accent" data-key="hero_h1a">K-Beauty,</span><br>
+        <span data-key="hero_h1b">Delivered to</span><br>
+        <em data-key="hero_h1c">Your Door.</em>
+      </h1>
+      <p class="hero-sub" data-key="hero_sub">Skip the search. Skip the commute. Choose your artist, share your hotel address, and wake up glowing — ready for Seoul.</p>
+      <div class="hero-btns">
+        <button class="btn-accent" data-scroll="booking" data-key="hero_cta">Reserve Now</button>
+        <button class="btn-ghost"  data-scroll="artists" data-key="hero_cta2">Meet Artists</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num accent" data-key="stat1n">500+</span><span class="stat-label" data-key="stat1l">Guests</span></div>
+        <div class="stat"><span class="stat-num accent" data-key="stat2n">15</span><span class="stat-label" data-key="stat2l">Artists</span></div>
+        <div class="stat"><span class="stat-num accent" data-key="stat3n">4.9★</span><span class="stat-label" data-key="stat3l">Rated</span></div>
+      </div>
+    </div>
+
+    <div class="hero-img fade-in delay1">
+      <div class="model-frame">
+        <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=600&q=85&fit=crop&crop=faces,top"
+             alt="K-Makeup Model"
+             onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'model-fallback\'>💄</div>'" />
+      </div>
+      <div class="hero-badge">
+        <span class="badge-icon">✨</span>
+        <div>
+          <div class="badge-sub"  data-key="badge_sub">Today's Look</div>
+          <div class="badge-title accent" data-key="badge_title">K-Glow Ready</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PROBLEM & SOLUTION -->
+
+  <section id="problem" class="section bg-white">
+    <div class="section-head reveal">
+      <div class="label-sm" data-key="prob_label">Why Peachko</div>
+      <h2 class="fd" data-key="prob_h">We Solved the Hassle</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card prob-bad reveal delay1">
+        <div class="prob-icon">😓</div>
+        <div class="prob-tag" data-key="before">Before</div>
+        <ul id="prob-bad-list"></ul>
+      </div>
+      <div class="prob-arrow reveal delay2">→</div>
+      <div class="prob-card prob-good reveal delay3">
+        <div class="prob-icon">✨</div>
+        <div class="prob-tag accent" data-key="peachko_label">Peachko</div>
+        <ul id="prob-good-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+
+  <section id="how" class="section bg-peach">
+    <div class="section-head reveal">
+      <div class="label-sm" data-key="how_label">3 Simple Steps</div>
+      <h2 class="fd" data-key="how_h">How It Works</h2>
+    </div>
+    <div class="steps-grid" id="steps-grid"></div>
+  </section>
+
+  <!-- SERVICES -->
+
+  <section id="services" class="section bg-white">
+    <div class="section-head reveal">
+      <div class="label-sm" data-key="svc_label">Our Services</div>
+      <h2 class="fd" data-key="svc_h">What We Offer</h2>
+    </div>
+    <div class="services-grid" id="services-grid"></div>
+  </section>
+
+  <!-- ARTISTS -->
+
+  <section id="artists" class="section bg-peach">
+    <div class="section-head reveal">
+      <div class="label-sm" data-key="art_label">The Team</div>
+      <h2 class="fd" data-key="art_h">Meet Your Artists</h2>
+    </div>
+    <div class="artists-grid" id="artists-grid"></div>
+  </section>
+
+  <!-- REVIEWS -->
+
+  <section id="reviews" class="section bg-white">
+    <div class="section-head reveal">
+      <div class="label-sm" data-key="rev_label">Real Stories</div>
+      <h2 class="fd" data-key="rev_h">What Guests Say</h2>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </section>
+
+  <!-- BOOKING -->
+
+  <section id="booking" class="section bg-gradient">
+    <div class="booking-wrap" style="text-align:center;">
+      <div class="section-head reveal">
+        <div class="label-sm" data-key="book_label">Let's Begin</div>
+        <h2 class="fd" data-key="book_h">Book Your Look</h2>
+        <p style="margin-top:15px;color:var(--muted);font-family:var(--fb);font-size:14px;" data-key="book_sub">
+          Proceed to our secure booking page to enter your details.
+        </p>
+      </div>
+      <div class="booking-form reveal" style="display:block;background:transparent;border:none;box-shadow:none;padding:0;">
+        <button class="btn-accent full-btn" id="bookRedirectBtn" data-key="f_cta"
+          style="max-width:300px;margin:0 auto;display:block;">
+          Go to Booking Page
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+
+  <section id="chat" class="section bg-accent">
+    <div class="chat-inner reveal">
+      <h2 class="fd" data-key="chat_h">Need Help?</h2>
+      <p data-key="chat_sub">Questions about services or custom requests?</p>
+      <div class="chat-btns">
+        <button class="chat-btn-white"   data-key="kakao">💬 KakaoTalk</button>
+        <button class="chat-btn-outline" data-key="whatsapp">📱 WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="logo accent">PEACHKO</div>
+    <span class="footer-copy" data-key="footer">© 2025 Peachko · Seoul, Korea</span>
+    <a href="privacy.html" style="color:var(--muted);font-size:12px;text-decoration:none;" data-key="footer_privacy">개인정보 처리방침</a>
+    <span class="footer-ig">Instagram</span>
+  </footer>
+
+  <div class="float-chat" id="floatChat">💬</div>
+
+  <!-- 반드시 type="module" 유지 -->
+
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
 </head>
 <body>
