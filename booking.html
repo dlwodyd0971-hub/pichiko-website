@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PICHIKO — Book Your Look</title>
+  <title>PEACHKO — Book Your Look</title>
   <link rel="stylesheet" href="style.css" />
   <!-- jsDelivr CDN — Google Fonts 대체 (중국 포함 전세계 접근 가능) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400.css" />
@@ -103,7 +103,7 @@
 <body>
 
   <header id="header" class="scrolled">
-    <div class="logo" style="cursor:pointer;" onclick="goHome()">PICHIKO</div>
+    <div class="logo" style="cursor:pointer;" onclick="goHome()">PEACHKO</div>
     <nav style="display:flex;align-items:center;gap:8px;">
       <!-- 언어 선택 (홈과 동일) -->
       <div class="lang-wrap">
@@ -211,8 +211,8 @@
   </section>
 
   <script type="module">
-    import { initializeApp }          from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { initializeApp }          from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
     import {
       getFirestore,
       collection,
@@ -222,16 +222,17 @@
       runTransaction,
       doc,
       serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
     /* ── Firebase 초기화 ── */
     const firebaseConfig = {
-      apiKey: "AIzaSyCnByhLp-UyVaVOpEERqNBJKeIcipPILE0",
-      authDomain: "pichiko-dev.firebaseapp.com",
-      projectId: "pichiko-dev",
-      storageBucket: "pichiko-dev.firebasestorage.app",
-      messagingSenderId: "675915261853",
-      appId: "1:675915261853:web:58dce392b1103dd6c1b174"
+      apiKey: "AIzaSyAix2aRbq5ykVPAO1zq_l_Uyt4VwvQkkHU",
+      authDomain: "peachko-356d4.firebaseapp.com",
+      projectId: "peachko-356d4",
+      storageBucket: "peachko-356d4.firebasestorage.app",
+      messagingSenderId: "958799549654",
+      appId: "1:958799549654:web:3919f7bc44dcac8a1d2577",
+      measurementId: "G-D4WZHXLMJX"
     };
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
