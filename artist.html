@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEACHKO — Artist Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/600.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@4/400-italic.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/300.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
+  <style>
+    .profile-header { padding: 120px 5% 40px; text-align: center; background: var(--cream); }
+    .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 5px solid var(--peach); }
+    .tag-container { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 15px 0; }
+    .badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; background: var(--soft); color: var(--accent); font-family: var(--fb); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; padding: 40px 5%; }
+    .gallery-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--r-md); transition: transform 0.3s var(--ease-soft); }
+    .gallery-img:hover { transform: scale(1.02); }
+    .insta-btn { background: #E1306C; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: bold; }
+    .career-card { background: var(--cream); padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto; text-align: left; box-shadow: var(--shadow-sm); }
+  </style>
+</head>
+<body>
+
+  <header id="header" class="scrolled">
+    <div class="logo" style="cursor:pointer;" onclick="location.href='index.html'">PEACHKO</div>
+    <nav>
+      <button class="btn-ghost" onclick="history.back()">← Back</button>
+    </nav>
+  </header>
+
+  <section class="profile-header">
+    <img id="detailPhoto" src="" class="profile-photo" alt="Artist" onerror="this.style.display='none'" />
+    <h1 id="detailName" class="fd" style="font-size: 42px; margin-bottom: 10px;">Artist Name</h1>
+    <p id="detailIntro" class="fb" style="color: var(--muted); max-width: 600px; margin: 0 auto 20px;"></p>
+
+    <div id="styleTags" class="tag-container"></div>
+
+    <div style="margin: 30px 0;">
+      <a id="instaLink" href="#" target="_blank" rel="noopener noreferrer" class="insta-btn" style="display:none;">📸 Follow on Instagram</a>
+    </div>
+
+    <div class="career-card">
+      <h3 class="fd">Career &amp; Expertise</h3>
+      <p id="detailCareer" class="fb" style="white-space: pre-wrap; line-height: 1.8; color: var(--muted); margin-top: 15px;"></p>
+      <div id="serviceTags" class="tag-container" style="justify-content: flex-start; margin-top: 20px;"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="fd" style="text-align: center; margin-top: 50px; font-size: 32px;">Portfolio Gallery</h2>
+    <div id="portfolioGrid" class="gallery-grid"></div>
+  </section>
+
+  <div style="text-align: center; padding: 60px 0;">
+    <button class="btn-accent" id="bookBtn" style="padding: 20px 60px; font-size: 18px;">Book Now with this Artist</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAix2aRbq5ykVPAO1zq_l_Uyt4VwvQkkHU",
+      authDomain: "peachko-356d4.firebaseapp.com",
+      projectId: "peachko-356d4",
+      storageBucket: "peachko-356d4.firebasestorage.app",
+      messagingSenderId: "958799549654",
+      appId: "1:958799549654:web:3919f7bc44dcac8a1d2577",
+      measurementId: "G-D4WZHXLMJX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const artistId  = urlParams.get('id');
+    const lang      = urlParams.get('lang') || 'EN';
+
+    document.getElementById('bookBtn').addEventListener('click', () => {
+      const params = new URLSearchParams({ lang });
+      if (artistId) params.set('artist', artistId);
+      location.href = `booking.html?${params.toString()}`;
+    });
+
+    async function loadArtistDetail() {
+      if (!artistId) return;
+
+      const docRef  = doc(db, 'artists', artistId);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) return;
+
+      const a = docSnap.data();
+
+      document.getElementById('detailName').textContent  = a.name   || '';
+      document.getElementById('detailIntro').textContent = a.intro  || '';
+      document.getElementById('detailCareer').textContent = a.career || '';
+
+      const photo = document.getElementById('detailPhoto');
+      if (a.photoUrl) {
+        photo.src = a.photoUrl;
+        photo.style.display = '';
+      }
+
+      if (a.snsLink) {
+        const insta = document.getElementById('instaLink');
+        insta.href = a.snsLink;
+        insta.style.display = 'inline-block';
+      }
+
+      const tagBox = document.getElementById('styleTags');
+      (a.styleTags || []).forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'badge';
+        span.textContent = tag;
+        tagBox.appendChild(span);
+      });
+
+      const svcBox = document.getElementById('serviceTags');
+      (a.services || []).forEach(svc => {
+        const span = document.createElement('span');
+        span.className = 'badge';
+        span.textContent = svc;
+        svcBox.appendChild(span);
+      });
+
+      const grid = document.getElementById('portfolioGrid');
+      (a.portfolioUrls || []).forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.className = 'gallery-img';
+        img.alt = `${a.name || 'Artist'} portfolio`;
+        grid.appendChild(img);
+      });
+    }
+
+    loadArtistDetail();
+  </script>
+</body>
+</html>

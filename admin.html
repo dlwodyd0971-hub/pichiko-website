@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEACHKO — 관리자 대시보드</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@4/500.css" />
+  <style>
+    body { font-family: var(--fb); background: #f4f6f8; color: var(--text); margin: 0; padding: 0; }
+    .admin-header {
+      background: var(--accent);
+      color: var(--white);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-header h1 { margin: 0; font-size: 20px; font-family: var(--fb); }
+    .btn-logout {
+      background: var(--white);
+      color: var(--accent);
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      font-weight: 500;
+      font-family: var(--fb);
+    }
+    .container { padding: 30px; max-width: 1200px; margin: 0 auto; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .card-label { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+    .card-value { font-size: 28px; font-weight: bold; }
+    .table-wrapper {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 18px; border-bottom: 1px solid var(--border); }
+    th { background: #fafbfc; color: var(--muted); font-size: 13px; text-transform: uppercase; font-family: var(--fb); }
+    td { font-size: 14px; }
+    tr:hover { background: var(--soft); }
+    .status { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    .status.pending   { background: #fff3cd; color: #856404; }
+    .status.confirmed { background: #d4edda; color: #155724; }
+    .status.canceled  { background: #f8d7da; color: #721c24; }
+    select { padding: 8px; border-radius: var(--r-md); border: 1px solid var(--border); font-family: var(--fb); }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      font-family: var(--fb);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--accent-lt); border-color: var(--accent); }
+    label { display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; font-size: 14px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <header class="admin-header">
+    <h1>🍑 PEACHKO Admin Dashboard</h1>
+    <button class="btn-logout" id="logoutBtn">로그아웃</button>
+  </header>
+
+  <div class="container">
+    <h2 style="margin-bottom: 25px;">실시간 현황 대시보드</h2>
+
+    <!-- 아티스트 등록 폼 -->
+    <div class="card" style="margin-bottom: 30px; text-align: left;">
+      <h3 style="margin-bottom: 20px;" class="fd">🎨 새 아티스트 등록</h3>
+      <form id="artistForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <input type="text"  id="a-name"  placeholder="아티스트 이름" required />
+        <input type="url"   id="a-photo" placeholder="프로필 사진 URL" required />
+        <input type="url"   id="a-sns"   placeholder="인스타그램 링크" />
+        <input type="text"  id="a-area"  placeholder="활동 지역 (예: 강남, 홍대)" />
+        <div style="grid-column: 1 / -1;">
+          <textarea id="a-intro" placeholder="한 줄 소개" rows="2" style="resize: vertical;"></textarea>
+        </div>
+        <div style="grid-column: 1 / -1;">
+          <p style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">스타일 태그 선택</p>
+          <label><input type="checkbox" name="styleTag" value="Glass Skin" /> Glass Skin</label>
+          <label><input type="checkbox" name="styleTag" value="K-Pop Idol" /> K-Pop Idol</label>
+          <label><input type="checkbox" name="styleTag" value="Bridal" /> Bridal</label>
+          <label><input type="checkbox" name="styleTag" value="Editorial" /> Editorial</label>
+        </div>
+        <div style="grid-column: 1 / -1;">
+          <p style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">가능 서비스 선택</p>
+          <label><input type="checkbox" name="service" value="Face" /> Face</label>
+          <label><input type="checkbox" name="service" value="Hair" /> Hair</label>
+          <label><input type="checkbox" name="service" value="Full Glam" /> Full Glam</label>
+        </div>
+        <button type="submit" class="btn-accent" style="grid-column: 1 / -1; padding: 15px;">아티스트 등록하기</button>
+      </form>
+    </div>
+
+    <!-- 통계 카드 -->
+    <div class="stats-grid">
+      <div class="card">
+        <div class="card-label">이번 달 총 예약</div>
+        <div id="totalBookings" class="card-value" style="color: var(--accent);">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">인기 아티스트</div>
+        <div id="topArtist" class="card-value">-</div>
+      </div>
+      <div class="card">
+        <div class="card-label">예약 확정 건수</div>
+        <div id="confirmedCount" class="card-value" style="color: #28a745;">0</div>
+      </div>
+    </div>
+
+    <!-- 예약 목록 -->
+    <h2 style="margin: 40px 0 20px 0;">예약 상세 내역</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>예약 일시</th>
+            <th>고객 이메일</th>
+            <th>아티스트</th>
+            <th>서비스</th>
+            <th>숙소 및 요청사항</th>
+            <th>진행 상태</th>
+            <th>상태 관리</th>
+          </tr>
+        </thead>
+        <tbody id="bookingList">
+          <tr><td colspan="7" style="text-align:center; padding: 40px;">데이터를 불러오는 중입니다...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp }    from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+    import {
+      getFirestore, collection, getDocs, doc, updateDoc,
+      query, orderBy, addDoc, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAix2aRbq5ykVPAO1zq_l_Uyt4VwvQkkHU",
+      authDomain: "peachko-356d4.firebaseapp.com",
+      projectId: "peachko-356d4",
+      storageBucket: "peachko-356d4.firebasestorage.app",
+      messagingSenderId: "958799549654",
+      appId: "1:958799549654:web:3919f7bc44dcac8a1d2577",
+      measurementId: "G-D4WZHXLMJX"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    const ADMIN_EMAIL = "admin@admin.com"; // TODO: 실제 관리자 이메일로 변경 필요
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else if (user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+        loadBookings();
+      } else {
+        alert("관리자 권한이 없는 계정입니다: " + user.email);
+        window.location.href = "index.html";
+      }
+    });
+
+    document.getElementById('artistForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = "등록 중...";
+      btn.disabled = true;
+
+      const styleTags = [...document.querySelectorAll('input[name="styleTag"]:checked')].map(el => el.value);
+      const services  = [...document.querySelectorAll('input[name="service"]:checked')].map(el => el.value);
+
+      try {
+        await addDoc(collection(db, "artists"), {
+          name:      document.getElementById('a-name').value.trim(),
+          photoUrl:  document.getElementById('a-photo').value.trim(),
+          snsLink:   document.getElementById('a-sns').value.trim(),
+          area:      document.getElementById('a-area').value.trim(),
+          intro:     document.getElementById('a-intro').value.trim(),
+          styleTags,
+          services,
+          createdAt: serverTimestamp(),
+        });
+        alert("아티스트가 성공적으로 등록되었습니다.");
+        e.target.reset();
+      } catch (err) {
+        alert("등록 실패: " + err.message);
+      } finally {
+        btn.textContent = "아티스트 등록하기";
+        btn.disabled = false;
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      signOut(auth).then(() => { window.location.href = "login.html"; });
+    });
+
+    async function loadBookings() {
+      const tbody       = document.getElementById('bookingList');
+      const totalEl     = document.getElementById('totalBookings');
+      const artistEl    = document.getElementById('topArtist');
+      const confirmedEl = document.getElementById('confirmedCount');
+
+      try {
+        const q    = query(collection(db, "bookings"), orderBy("reservationDate", "desc"));
+        const snap = await getDocs(q);
+
+        if (snap.empty) {
+          tbody.innerHTML = "";
+          const tr = document.createElement('tr');
+          const td = document.createElement('td');
+          td.colSpan = 7;
+          td.style.cssText = "text-align:center; padding:40px;";
+          td.textContent = "접수된 예약이 없습니다.";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+          return;
+        }
+
+        let totalThisMonth = 0;
+        let confirmedTotal = 0;
+        const artistStats  = {};
+        const currentMonth = new Date().toISOString().substring(0, 7);
+
+        tbody.innerHTML = "";
+        snap.forEach((docSnap) => {
+          const data = docSnap.data();
+          const id   = docSnap.id;
+
+          if (data.reservationDate?.startsWith(currentMonth)) totalThisMonth++;
+          if (data.status === "confirmed") confirmedTotal++;
+          if (data.artist) artistStats[data.artist] = (artistStats[data.artist] || 0) + 1;
+
+          tbody.appendChild(buildRow(id, data));
+        });
+
+        totalEl.textContent     = totalThisMonth;
+        confirmedEl.textContent = confirmedTotal;
+
+        let topName = "-", maxCount = 0;
+        for (const [name, count] of Object.entries(artistStats)) {
+          if (count > maxCount) { maxCount = count; topName = name; }
+        }
+        artistEl.textContent = topName !== "-" ? `${topName} (${maxCount}건)` : "-";
+
+      } catch (err) {
+        tbody.innerHTML = "";
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 7;
+        td.style.cssText = "color:red; text-align:center; padding:20px;";
+        td.textContent = "오류 발생: " + err.message;
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      }
+    }
+
+    function buildRow(id, data) {
+      const STATUS_MAP = { pending: "대기중", confirmed: "예약 확정", canceled: "취소됨" };
+      const tr = document.createElement('tr');
+
+      // 예약 일시
+      const td1 = document.createElement('td');
+      const strong = document.createElement('strong');
+      strong.textContent = data.reservationDate || '-';
+      const small = document.createElement('small');
+      small.textContent = data.reservationTime || '';
+      td1.append(strong, document.createElement('br'), small);
+
+      // 고객 이메일
+      const td2 = document.createElement('td');
+      td2.textContent = data.userEmail || '-';
+
+      // 아티스트
+      const td3 = document.createElement('td');
+      const artistStrong = document.createElement('strong');
+      artistStrong.textContent = data.artist || '-';
+      td3.appendChild(artistStrong);
+
+      // 서비스
+      const td4 = document.createElement('td');
+      td4.textContent = data.serviceType || '-';
+
+      // 숙소 및 요청사항
+      const td5 = document.createElement('td');
+      const hotel = document.createElement('div');
+      hotel.style.fontSize = '13px';
+      hotel.textContent = '🏨 ' + (data.hotelAddress || '-');
+      const req = document.createElement('div');
+      req.style.cssText = 'font-size:11px; color:var(--muted); margin-top:4px;';
+      req.textContent = '💬 ' + (data.specialRequests || '-');
+      td5.append(hotel, req);
+
+      // 상태 배지
+      const td6 = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.className = `status ${data.status || 'pending'}`;
+      badge.textContent = STATUS_MAP[data.status] || '대기중';
+      td6.appendChild(badge);
+
+      // 상태 변경 셀렉트
+      const td7 = document.createElement('td');
+      const select = document.createElement('select');
+      [['pending', '대기중'], ['confirmed', '확정'], ['canceled', '취소']].forEach(([val, label]) => {
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = label;
+        if (data.status === val) opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.addEventListener('change', () => updateStatus(id, select.value));
+      td7.appendChild(select);
+
+      tr.append(td1, td2, td3, td4, td5, td6, td7);
+      return tr;
+    }
+
+    async function updateStatus(docId, newStatus) {
+      if (!confirm("이 예약의 상태를 변경하시겠습니까?")) return;
+      try {
+        await updateDoc(doc(db, "bookings", docId), { status: newStatus });
+        alert("상태가 성공적으로 변경되었습니다.");
+        loadBookings();
+      } catch (err) {
+        alert("상태 변경에 실패했습니다: " + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
