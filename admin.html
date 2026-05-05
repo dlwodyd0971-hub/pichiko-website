@@ -170,7 +170,7 @@
     const auth = getAuth(app);
     const db   = getFirestore(app);
 
-    const ADMIN_EMAIL = "admin@admin.com";
+    const ADMIN_EMAIL = "admin@admin.com"; // TODO: 실제 관리자 이메일로 변경 필요
 
     onAuthStateChanged(auth, (user) => {
       if (!user) {
